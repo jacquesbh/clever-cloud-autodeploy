@@ -9,14 +9,14 @@ env:
     CLEVER_TOKEN: ${{ secrets.CLEVER_TOKEN }}
     CLEVER_SECRET: ${{ secrets.CLEVER_SECRET }}
     CLEVER_DIR: ${{ secrets.CLEVER_DIR }}
-    GH_SHA: ${{ env.GITHUB_SHA }}
+    GH_SHA: ${{ github.GITHUB_SHA }}
 
 jobs:
     deployment:
         runs-on: ubuntu-latest
         environment:
             name: test
-            url: $CLEVER_URL
+            url: ${{ env.CLEVER_URL }}
         steps:
             -   uses: actions/checkout@v2
             -   name: Install clever-tools
