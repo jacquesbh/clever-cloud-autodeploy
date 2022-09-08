@@ -5,18 +5,16 @@ on:
             - master
 
 env:
-    CLEVER_URL: ${{ secrets.CLEVER_URL }}
     CLEVER_TOKEN: ${{ secrets.CLEVER_TOKEN }}
     CLEVER_SECRET: ${{ secrets.CLEVER_SECRET }}
     CLEVER_DIR: ${{ secrets.CLEVER_DIR }}
-    GH_SHA: ${{ github.GITHUB_SHA }}
 
 jobs:
     deployment:
         runs-on: ubuntu-latest
         environment:
             name: test
-            url: ${{ env.CLEVER_URL }}
+            url: ${{ secrets.CLEVER_URL }}
         steps:
             -   uses: actions/checkout@v2
             -   name: Install clever-tools
@@ -33,7 +31,7 @@ jobs:
                     git config --global user.name "Madame Biz"
                     git init
                     git add -A
-                    git commit -m "Deploy $GH_SHA"
+                    git commit -m "Deploy ${{ github.GITHUB_SHA }}"
                     clever login --token $CLEVER_TOKEN --secret $CLEVER_SECRET
                     clever deploy --force
                     
