@@ -9,7 +9,7 @@ jobs:
         runs-on: ubuntu-latest
         environment:
             name: test
-            url: ${{ env.CLEVER_URL }}
+            url: ${{ secrets.CLEVER_URL }}
         steps:
             -   uses: actions/checkout@v2
             -   name: Install clever-tools
@@ -20,13 +20,13 @@ jobs:
                     rm -rf .git
                     cp .clever.json ~/deployment/
                     cp -r clevercloud  ~/deployment/
-                    cd ${{ env.CLEVER_DIR }} && tar cvzf ~/deployment/artifact.tgz ./
+                    cd ${{ secrets.CLEVER_DIR }} && tar cvzf ~/deployment/artifact.tgz ./
                     cd ~/deployment
                     git config --global user.email "madamebiz@monsieurbiz.com"
                     git config --global user.name "Madame Biz"
                     git init
                     git add -A
                     git commit -m "Deploy ${{ env.GITHUB_SHA }}"
-                    clever login --token ${{ env.CLEVER_TOKEN}} --secret ${{ env.CLEVER_SECRET }}
+                    clever login --token ${{ secrets.CLEVER_TOKEN}} --secret ${{ secrets.CLEVER_SECRET }}
                     clever deploy --force
                     
