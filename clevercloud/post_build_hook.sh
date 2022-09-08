@@ -1,3 +1,3 @@
 #!/bin/bash
 
-echo "post build hook"
+tar xvzf artifact.tgz
