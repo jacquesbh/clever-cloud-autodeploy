@@ -14,7 +14,7 @@ jobs:
         runs-on: ubuntu-latest
         environment:
             name: test
-            url: ${{ secrets.CLEVER_URL }}
+            url: https://app-f2639bd0-2ade-41f5-b2c3-33c3b6303a27.cleverapps.io/
         steps:
             -   uses: actions/checkout@v2
             -   name: Install clever-tools
