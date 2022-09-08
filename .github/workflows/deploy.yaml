@@ -1,0 +1,30 @@
+name: Deployment
+on:
+    push:
+        branches:
+            - master
+
+jobs:
+    deployment:
+        runs-on: ubuntu-latest
+        environment:
+            name: test
+            url: ${{ env.CLEVER_URL }}
+        steps:
+            -   uses: actions/checkout@v2
+            -   name: Install clever-tools
+                run: npm install -g clever-tools
+            -   uses: lhotari/action-upterm@v1
+            -   name: Deploy
+                run: |
+                    mkdir -p ~/deployment
+                    rm -rf .git
+                    cp .clever.json ~/deployment/
+                    tar cvzf ~/deployment/artifact.tgz ${{ env.CLEVER_DIR }}
+                    cd ~/deployment
+                    git init
+                    git add -A
+                    git commit -m "Deploy ${{ env.GITHUB_SHA }}"
+                    clever login --token ${{ env.CLEVER_TOKEN}} --secret ${{ env.CLEVER_SECRET }}
+                    
+                    
