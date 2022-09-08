@@ -1,0 +1,11 @@
+{
+  "apps": [
+    {
+      "app_id": "app_f2639bd0-2ade-41f5-b2c3-33c3b6303a27",
+      "org_id": "orga_3a5e7212-5c23-4026-8d9a-c2cb8000b008",
+      "deploy_url": "https://push-n2-par-clevercloud-customers.services.clever-cloud.com/app_f2639bd0-2ade-41f5-b2c3-33c3b6303a27.git",
+      "name": "autodeploy",
+      "alias": "autodeploy"
+    }
+  ]
+}
