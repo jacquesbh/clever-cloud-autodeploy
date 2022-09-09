@@ -7,7 +7,7 @@ on:
 env:
     CLEVER_TOKEN: ${{ secrets.CLEVER_TOKEN }}
     CLEVER_SECRET: ${{ secrets.CLEVER_SECRET }}
-    CLEVER_DIR: ${{ secrets.CLEVER_DIR }}
+    APP_DIR: ${{ secrets.APP_DIR }}
 
 jobs:
     deployment:
@@ -25,7 +25,7 @@ jobs:
                     rm -rf .git
                     cp .clever.json ~/deployment/
                     cp -r clevercloud  ~/deployment/
-                    cd $CLEVER_DIR && tar cvzf ~/deployment/artifact.tgz ./
+                    cd $APP_DIR && tar cvzf ~/deployment/artifact.tgz ./
                     cd ~/deployment
                     git config --global user.email "madamebiz@monsieurbiz.com"
                     git config --global user.name "Madame Biz"
